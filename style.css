@@ -9,11 +9,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(19deg,#24d4fd 0%,#b721ff); 
+    background: linear-gradient(19deg,#0080ff 0%,#00c1c1); 
 }
 h1{
     color: white;
     margin: 15px;
+    font-family: Arial, sans-serif;
 }
 input{
     width: 300px;
@@ -34,7 +35,8 @@ button{
     margin: 15px;
     cursor: pointer;
     outline: none;
-    background: #b721ff;
+    background: #0080ff;
     color: white;
     border: none;
+    font-family: Arial, sans-serif;
 }
