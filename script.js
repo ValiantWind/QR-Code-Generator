@@ -1,9 +1,8 @@
 function generate(){
-    var x = document.getElementById("input").value;
-    var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${x}`;
+    var input = document.getElementById("input").value;
+    var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${input}`;
 
-    var img = document.getElementById("img");
+    var qrCode = document.getElementById("img");
 
-    img.src = url;
-    console.log(url);
+    qrCode.src = url;
   }
