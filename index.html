@@ -10,6 +10,14 @@
     <div class="main">
       <h1>QR Code Generator</h1>
       <input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here"/>
+			<h3>Choose an image format for the QR Code</h3>
+			<select name="fileFormat" id="fileFormat">
+    <option value="png">PNG</option>
+    <option value="jpg">JPG/JPEG</option>
+		<option value="svg">SVG</option>
+  </select>
+			<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)"/>
+			
       <button type="submit" onclick="generate()" id="submit">
         Generate
       </button>

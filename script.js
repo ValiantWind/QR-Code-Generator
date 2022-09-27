@@ -1,10 +1,16 @@
+
 function generate(){
-    var input = document.getElementById("inputUrl").value;
-    var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${input}`;
-
-    var qrCode = document.getElementById("img");
-
-    qrCode.src = url;
+    var inputUrl = document.getElementById("inputUrl").value;
+		var inputColor = document.getElementById("inputColor").value;
+	var fileFormat = document.getElementById("fileFormat").value;
+	var qrCode = document.getElementById("img");
+    var defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inputUrl}&format=${fileFormat}`;
+		var coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inputUrl}&color=${inputColor}&format=${fileFormat}`;
+	if(!inputColor){
+		qrCode.src = defaultApi;
+	} else {
+		qrCode.src = coloredApi;
+	}
   }
 
 function createRipple(event) {
