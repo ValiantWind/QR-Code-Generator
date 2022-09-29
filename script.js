@@ -15,7 +15,7 @@ function fetchFile(url) {
 	return null;
 }
 
-let links = fetchFile('https://ValiantWind.github.io/config/config.json');
+let links = fetchFile('https://ValiantWind.github.io/QR-Code-Generator/config/config.json');
 console.log(links)
 
 function generate(){
