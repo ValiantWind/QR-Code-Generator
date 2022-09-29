@@ -1,12 +1,38 @@
+
+// fetch a json file
+function fetchFile(url) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				var data = JSON.parse(xhr.responseText);
+				return data;
+			}
+		}
+	}
+	xhr.send();
+	return null;
+}
+
+let links = fetchFile('https://ValiantWind.github.io/config/config.json');
+console.log(links)
+
 function generate(){
-    var inputUrl = document.getElementById("inputUrl").value;
+    var inputUrl = document.getElementById("inputUrl");
 		var inputColor = document.getElementById("inputColor").value;
 	var fileFormat = document.getElementById("fileFormat").value;
+	let url = inputUrl.value;
+	
+	// If the url inputted is one of the links on the malicious links list, the url will change to a rickroll automatically :)
+	if(forbiddenLinks){
+		url = "https://ValiantWind.github.io/puppy";
+	}
 	var qrCode = document.getElementById("img");
-    var defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inputUrl}&format=${fileFormat}`;
-		var coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inputUrl}&color=${inputColor}&format=${fileFormat}`;
+    var defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
+		var coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
 	if(!inputColor){
-		qrCode.src = defaultApi;
+		qrCode.src = defaultApi
 	} else {
 		qrCode.src = coloredApi;
 	}

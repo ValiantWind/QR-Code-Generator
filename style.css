@@ -184,13 +184,14 @@ img{
   z-index: 1;
 	text-align: center;
 	align-items: center;
+	transition: max-height 1s;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
   color: white;
   text-decoration: none;
-	overflow: hiddel;
+	overflow: hidden;
   display: inline-flex;
 }
 
