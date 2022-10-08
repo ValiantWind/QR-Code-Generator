@@ -1,42 +1,6 @@
+// The Ripple Animation for the Button
 
-// fetch a json file
-function fetchFile(url) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', url, true);
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				var data = JSON.parse(xhr.responseText);
-				return data;
-			}
-		}
-	}
-	xhr.send();
-	return null;
-}
-
-let links = fetchFile('https://ValiantWind.github.io/QR-Code-Generator/config/config.json');
-console.log(links)
-
-function generate(){
-    var inputUrl = document.getElementById("inputUrl");
-		var inputColor = document.getElementById("inputColor").value;
-	var fileFormat = document.getElementById("fileFormat").value;
-	let url = inputUrl.value;
-	
-	// If the url inputted is one of the links on the malicious links list, the url will change to a rickroll automatically :)
-	if(forbiddenLinks){
-		url = "https://ValiantWind.github.io/puppy";
-	}
-	var qrCode = document.getElementById("img");
-    var defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
-		var coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
-	if(!inputColor){
-		qrCode.src = defaultApi
-	} else {
-		qrCode.src = coloredApi;
-	}
-  }
+const buttons = document.getElementsByTagName("button");
 
 function createRipple(event) {
   const button = event.currentTarget;
@@ -59,8 +23,31 @@ function createRipple(event) {
   button.appendChild(circle);
 }
 
-const buttons = document.getElementsByTagName("button");
+// Loop through all the buttons on the website and apply the ripple effect to each one
 for (const button of buttons) {
   button.addEventListener("click", createRipple);
 }
 
+
+// Where the QR Code is Generated
+function generate(){    
+	let inputUrl = document.getElementById("inputUrl");
+	let inputColor = document.getElementById("inputColor").value;
+	let fileFormat = document.getElementById("fileFormat").value;
+	let url = inputUrl.value;
+	let qrCode = document.getElementById("img");
+
+	// API Endpoint Used for the QR Code
+    const defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
+
+		// We use a separate endpoint if a Hex Color is inputted
+		const coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
+
+	// If the user has not input a Hex Color, we use the default endpoint
+		if(!inputColor){
+			qrCode.src = defaultApi
+		// Other wise we use the endpoint that colors the QR code Image
+		} else {
+			qrCode.src = coloredApi;
+		}
+  }

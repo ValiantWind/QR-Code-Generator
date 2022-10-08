@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+	
   <head>
-    <meta charset="UTF-8" />
+		 <meta charset="UTF-8" />
+		<meta name="description" content="QR Code Generator">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="keywords" content="HTML, CSS, JavaScript">
+		<meta name="author" content="ValiantWind">
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+	
   <body>
-		<div class="topnav">
-  <a class="active" href="#home">Home</a>
-	<a href="#about">About</a>
-  <a href="#contact">Contact</a>
-	<div class="dropdown">
-  <button class="dropbtn">Projects</button>
-  <div class="dropdown-content">
-    <a href="https://ValiantWind.github.io/Custom-Context-Menu">Custom Context Menu</a>
-    <a href="https://ValiantWind.github.io/Location-Details">Location Details</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>
-		</div>
     <div class="main">
       <h1>QR Code Generator</h1>
+
+			<!-- URL For the QR Code -->
       <input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here"/>
+
+			<!-- File Format for the QR Code Image (In case you want to right click to save the image)-->
 			<h3>Choose an image format for the QR Code</h3>
 			<select name="fileFormat" id="fileFormat">
     <option value="png">PNG</option>
     <option value="jpg">JPG/JPEG</option>
 		<option value="svg">SVG</option>
   </select>
+
+			<!-- Optional Hex Color -->
 			<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)" minlength="6" maxlength="6"/>
-			
+
+			<!-- Generate the QR Code -->
       <button type="submit" onclick="generate()" id="submit">
         Generate
       </button>
+
+			<!-- The QR Code Image will Appear Here -->
       <img name="qrCode" src="" alt="" id="img">
-			
     </div>
+
+		<!-- The QR Code is generated with an API so I used an Axios GET Request to generate the QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+
+		<!-- The API, button ripple animation, and everything that makes the QR Code work is handled here -->
 <script src="script.js"></script>
+	
   </body>
 </html>
