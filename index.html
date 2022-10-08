@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
+	<!-- To lazy to come up with a favicon to add-->
   <head>
 		 <meta charset="UTF-8" />
 		<meta name="description" content="QR Code Generator">
@@ -18,13 +19,13 @@
 			<!-- URL For the QR Code -->
       <input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here"/>
 
-			<!-- File Format for the QR Code Image (In case you want to right click to save the image)-->
+			<!-- File Format for the QR Code Image (In case you want to right click to save the image in a specific image format)-->
 			<h3>Choose an image format for the QR Code</h3>
 			<select name="fileFormat" id="fileFormat">
-    <option value="png">PNG</option>
-    <option value="jpg">JPG/JPEG</option>
-		<option value="svg">SVG</option>
-  </select>
+    	<option value="png">PNG</option>
+    	<option value="jpg">JPG/JPEG</option>
+		<	option value="svg">SVG</option>
+ 		 </select>
 
 			<!-- Optional Hex Color -->
 			<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)" minlength="6" maxlength="6"/>
@@ -34,12 +35,14 @@
         Generate
       </button>
 
+			<!-- Work in Progress download button that downloads the QR Code image to your device -->
+			<button type="submit" id="download">
+        Download Image (WIP)
+      </button>
+
 			<!-- The QR Code Image will Appear Here -->
       <img name="qrCode" src="" alt="" id="img">
     </div>
-
-		<!-- The QR Code is generated with an API so I used an Axios GET Request to generate the QR Code -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
 		<!-- The API, button ripple animation, and everything that makes the QR Code work is handled here -->
 <script src="script.js"></script>
