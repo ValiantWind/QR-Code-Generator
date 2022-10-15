@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+		background: rgba(18, 18, 18, 1);
 }
 @font-face {
     font-family: 'Gotham Screen Smart';
