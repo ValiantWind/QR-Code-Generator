@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-		background: rgba(18, 18, 18, 1);
 }
 @font-face {
     font-family: 'Gotham Screen Smart';
@@ -11,6 +10,7 @@
   	url('https://ValiantWind.github.io/QR-Code-Generator/fonts/GothamSSm-Book.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+	font-display: swap;
 }
 
 .main{
