@@ -40,6 +40,14 @@ h3{
     font-weight: 500;
     line-height: 140%;
 }
+h4{
+    color: white;
+    margin: 15px;
+    font-family: 'Gotham Screen Smart', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+}
 
 input{
     width: 300px;

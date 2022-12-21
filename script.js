@@ -36,6 +36,7 @@ function generate(){
 	let fileFormat = document.getElementById("fileFormat").value;
 	let url = inputUrl.value;
 	let qrCode = document.getElementById("img");
+	const copybutton = document.getElementById("copyurl");
 
 	// API Endpoint Used for the QR Code
     const defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
@@ -43,11 +44,39 @@ function generate(){
 		// We use a separate endpoint if a Hex Color is inputted
 		const coloredApi = 	`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
 
+	
 	// If the user has not input a Hex Color, we use the default endpoint
 		if(!inputColor){
 			qrCode.src = defaultApi
+			qrCode.alt = url;
+			if(copybutton){
+				copybutton.addEventListener("click", () => {
+			navigator.clipboard.writeText(qrCode.src).then(() => {
+				copybutton.innerHTML = "Copied to Clipboard!";
+
+				setTimeout(() => {
+					copybutton.innerHTML = "Copy Image URL";
+				
+				}, 3000)
+			})
+		})
+			}
+			
 		// Other wise we use the endpoint that colors the QR code Image
 		} else {
 			qrCode.src = coloredApi;
+			qrCode.alt = url;
+			if(copybutton){
+				copybutton.addEventListener("click", () => {
+			navigator.clipboard.writeText(qrCode.src).then(() => {
+				copybutton.innerHTML = "Copied to Clipboard!";
+
+				setTimeout(() => {
+					copybutton.innerHTML = "Copy Image URL";
+				
+				}, 3000)
+			})
+		})
+			}
 		}
   }
