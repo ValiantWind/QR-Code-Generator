@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<!-- To lazy to come up with a favicon to add-->
-  <head>
+	<head>
 		 <meta charset="UTF-8" />
-		<meta name="description" content="QR Code Generator">
+		<meta name="description" content="QR Code Generator. Simply input the URL and a QR Code will appear. You can even customize the color of the QR Code and the Image Format.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="keywords" content="HTML, CSS, JavaScript">
 		<meta name="author" content="ValiantWind">
@@ -19,7 +18,6 @@
 			<!-- URL For the QR Code -->
       <input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here"/>
 
-			<!-- File Format for the QR Code Image (In case you want to right click to save the image in a specific image format)-->
 			<h3>Choose an image format for the QR Code</h3>
 			<select name="fileFormat" id="fileFormat">
     	<option value="png">PNG</option>
@@ -32,27 +30,20 @@
 			<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
 
 			<br>
-			<!-- Generate the QR Code -->
       <button type="submit" onclick="generate()" id="submit">
         Generate
       </button>
 
-			<!-- Work in Progress download button that downloads the QR Code image to your device -->
 			<button type="submit" id="copyurl">
         Copy Image URL
       </button>
 
-			<!-- The QR Code Image will Appear Here -->
       <img name="qrCode" src="" alt="" id="img">
-
 			<button type="submit" id="share">
         Share QR Code
       </button>
     </div>
 
-		
-
-		<!-- The API, button ripple animation, and everything that makes the QR Code work is handled here -->
 <script src="script.js"></script>
 	
   </body>

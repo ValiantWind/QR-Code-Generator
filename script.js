@@ -54,7 +54,6 @@ function copyImageUrl(button, url) {
 	}
 }
 
-
 // Where the QR Code is Generated
 function generate() {
 	let inputUrl = document.getElementById("inputUrl");
@@ -70,7 +69,6 @@ function generate() {
 
 	// We use a separate endpoint if a Hex Color is inputted
 	const coloredApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
-
 
 	// If the user has not input a Hex Color, we use the default endpoint
 	if (!inputColor) {

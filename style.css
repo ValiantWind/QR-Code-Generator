@@ -5,12 +5,9 @@
 @font-face {
     font-family: 'Gotham Screen Smart';
     src: local('Gotham Screen Smart Book'), local('Gotham-Screen-Smart-Book'),
-    url('https://ValiantWind.github.io/QR-Code-Generator/fonts/GothamSSm-Book.woff2') format('woff2'),
-    url('https://ValiantWind.github.io/QR-Code-Generator/fonts/GothamSSm-Book.woff') format('woff'),
-  	url('https://ValiantWind.github.io/QR-Code-Generator/fonts/GothamSSm-Book.ttf') format('truetype');
+    url('./fonts/GothamSSm-Book.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-	font-display: swap;
 }
 
 .main{
@@ -23,24 +20,7 @@
     background: rgba(18, 18, 18, 1);
 }
 
-h1{
-    color: white;
-    margin: 15px;
-    font-family: 'Gotham Screen Smart', sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-}
-h3{
-    color: white;
-    margin: 15px;
-    font-family: 'Gotham Screen Smart', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-}
-h4{
+h1, h3, h4{
     color: white;
     margin: 15px;
     font-family: 'Gotham Screen Smart', sans-serif;
