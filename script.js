@@ -54,8 +54,8 @@ function copyImageUrl(button, url) {
 	}
 }
 
-function download(button, url, a){
-	if(button){
+function download(button, url, a) {
+	if (button) {
 		button.addEventListener("click", () => {
 			const imageURL = URL.createObjectURL(imageBlog)
 			a.download = url;
@@ -84,36 +84,36 @@ function generate() {
 
 	// If the user has not input a Hex Color, we use the default endpoint
 	if (!inputColor) {
-		fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`).then((response) => {
+		fetch(defaultApi).then((response) => {
 			return response.blob()
 		}).then((response) => {
 			const imageUrl = URL.createObjectURL(response);
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
 			share(shareButton, defaultApi);
-			if(downloadButton){
-		downloadButton.addEventListener("click", () => {
-			downloadLink.href = imageUrl
-  		downloadLink.download = `qrcode.${fileFormat}`
-			downloadLink.click();
-			 })
-	}
-		})																																								
+			if (downloadButton) {
+				downloadButton.addEventListener("click", () => {
+					downloadLink.href = imageUrl
+					downloadLink.download = `qrcode.${fileFormat}`
+					downloadLink.click();
+				})
+			}
+		})
 	} else {
-	fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`).then((response) => {
+		fetch(coloredApi).then((response) => {
 			return response.blob()
 		}).then((response) => {
 			const imageUrl = URL.createObjectURL(response);
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, response.blob());
-			share(shareButton, defaultApi);
-			if(downloadButton){
-		downloadButton.addEventListener("click", () => {
-			downloadLink.href = imageUrl
-  		downloadLink.download = `qrcode.${fileFormat}`
-			downloadLink.click();
-		})
+			share(shareButton, coloredApi);
+			if (downloadButton) {
+				downloadButton.addEventListener("click", () => {
+					downloadLink.href = imageUrl
+					downloadLink.download = `qrcode.${fileFormat}`
+					downloadLink.click();
+				})
 			}
-			 })
-		}
+		})
+	}
 }

@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		 <meta charset="UTF-8" />
-			<meta name="description" content="QR Code Generator. Simply input the URL and a QR Code will appear. You can even customize the color of the QR Code and the Image Format.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="keywords" content="HTML, CSS, JavaScript">
-		<meta name="author" content="ValiantWind">
-    <title>QR Code Generator</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-	
-  <body>
-    <div class="main">
-      <h2>QR Code Generator</h2>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description"
+		content="QR Code Generator. Simply input the URL and a QR Code will appear. You can even customize the color of the QR Code and the Image Format.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="author" content="ValiantWind">
+	<title>QR Code Generator</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
 
-      <input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here"/>
+<body>
+	<div class="main">
+		<h2>QR Code Generator</h2>
 
-			<h3>Choose an image format for the QR Code</h3>
-			<select name="fileFormat" id="fileFormat">
-    	<option value="png">PNG</option>
-    	<option value="jpg">JPG/JPEG</option>
+		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
+
+		<h3>Choose an image format for the QR Code</h3>
+		<select name="fileFormat" id="fileFormat">
+			<option value="png">PNG</option>
+			<option value="jpg">JPG/JPEG</option>
 			<option value="svg">SVG</option>
- 		 </select>
+		</select>
 
-			<!-- Optional Hex Color -->
-			<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)" minlength="6" maxlength="6"/>
-			<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
+		<!-- Optional Hex Color -->
+		<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)"
+			minlength="6" maxlength="6" />
+		<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
 
-			<br>
-      <button type="submit" onclick="generate()" id="submit">
-        Generate
-      </button>
+		<br>
+		<button type="submit" onclick="generate()" id="submit">
+			Generate
+		</button>
 
-			<button type="submit" id="copyurl">
-        Copy Image URL
-      </button>
+		<button type="submit" id="copyurl">
+			Copy Image URL
+		</button>
 
-			<button type="submit" id="downloadButton">
-				<a id="downloadLink"></a>
-      	Download QR Code Image
-      </button>
+		<button type="submit" id="downloadButton">
+			<a id="downloadLink"></a>
+			Download QR Code Image
+		</button>
 
-      <img name="qrCode" src="" alt="" id="img">
-			<button type="submit" id="share">
-        Share QR Code
-      </button>
-    </div>
+		<img name="qrCode" src="" alt="" id="img">
+		<button type="submit" id="share">
+			Share QR Code
+		</button>
+	</div>
 
-<script src="script.js"></script>
-	
-  </body>
+	<script src="script.js"></script>
+
+</body>
+
 </html>
