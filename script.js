@@ -54,6 +54,16 @@ function copyImageUrl(button, url) {
 	}
 }
 
+function download(button, url, a){
+	if(button){
+		button.addEventListener("click", () => {
+			const imageURL = URL.createObjectURL(imageBlog)
+			a.download = url;
+		})
+	}
+}
+
+
 // Where the QR Code is Generated
 function generate() {
 	let inputUrl = document.getElementById("inputUrl");
@@ -63,6 +73,8 @@ function generate() {
 	let qrCode = document.getElementById("img");
 	const copyButton = document.getElementById("copyurl");
 	const shareButton = document.getElementById("share");
+	const downloadButton = document.getElementById("downloadButton");
+	const downloadLink = document.getElementById("downloadLink");
 
 	// API Endpoint Used for the QR Code
 	const defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
@@ -72,16 +84,36 @@ function generate() {
 
 	// If the user has not input a Hex Color, we use the default endpoint
 	if (!inputColor) {
-		qrCode.src = defaultApi
-		qrCode.alt = url;
-		copyImageUrl(copyButton, qrCode.src);
-		share(shareButton, defaultApi)
-		// Other wise we use the endpoint that colors the QR code Image
-	} else {
-
-		qrCode.src = coloredApi;
-		qrCode.alt = url;
-		copyImageUrl(copyButton, qrCode.src);
-		share(shareButton, coloredApi);
+		fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`).then((response) => {
+			return response.blob()
+		}).then((response) => {
+			const imageUrl = URL.createObjectURL(response);
+			qrCode.src = imageUrl
+			copyImageUrl(copyButton, imageUrl);
+			share(shareButton, defaultApi);
+			if(downloadButton){
+		downloadButton.addEventListener("click", () => {
+			downloadLink.href = imageUrl
+  		downloadLink.download = `qrcode.${fileFormat}`
+			downloadLink.click();
+			 })
 	}
+		})																																								
+	} else {
+	fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`).then((response) => {
+			return response.blob()
+		}).then((response) => {
+			const imageUrl = URL.createObjectURL(response);
+			qrCode.src = imageUrl
+			copyImageUrl(copyButton, response.blob());
+			share(shareButton, defaultApi);
+			if(downloadButton){
+		downloadButton.addEventListener("click", () => {
+			downloadLink.href = imageUrl
+  		downloadLink.download = `qrcode.${fileFormat}`
+			downloadLink.click();
+		})
+			}
+			 })
+		}
 }
