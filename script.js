@@ -34,7 +34,11 @@ function share(button, url) {
 			url: url
 		}
 		button.addEventListener("click", () => {
-			navigator.share(shareData);
+			if(!navigator.canShare){
+				button.innerHTML = "Your browser does not support the share feature."
+			} else {
+				navigator.share(shareData);
+			}
 		})
 	}
 }
@@ -50,15 +54,6 @@ function copyImageUrl(button, url) {
 
 				}, 3000)
 			})
-		})
-	}
-}
-
-function download(button, url, a) {
-	if (button) {
-		button.addEventListener("click", () => {
-			const imageURL = URL.createObjectURL(imageBlog)
-			a.download = url;
 		})
 	}
 }
