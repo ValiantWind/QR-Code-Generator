@@ -81,8 +81,8 @@ function generate() {
 	if (!inputColor) {
 		fetch(defaultApi).then((response) => {
 			return response.blob()
-		}).then((response) => {
-			const imageUrl = URL.createObjectURL(response);
+		}).then((res) => {
+			const imageUrl = URL.createObjectURL(res);
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
 			share(shareButton, defaultApi);
@@ -97,10 +97,10 @@ function generate() {
 	} else {
 		fetch(coloredApi).then((response) => {
 			return response.blob()
-		}).then((response) => {
-			const imageUrl = URL.createObjectURL(response);
+		}).then((res) => {
+			const imageUrl = URL.createObjectURL(res);
 			qrCode.src = imageUrl
-			copyImageUrl(copyButton, response.blob());
+			copyImageUrl(copyButton, imageUrl);
 			share(shareButton, coloredApi);
 			if (downloadButton) {
 				downloadButton.addEventListener("click", () => {
