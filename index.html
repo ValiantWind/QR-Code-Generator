@@ -14,11 +14,21 @@
 
 <body>
 	<div class="main">
-		<h2>QR Code Generator</h2>
+		<h1>QR Code Generator</h2>
+
+		<h2>QR Code Type:</h3>
+		<select name="qrCodeType" id="qrCodeType">
+			<option value="regular">Regular QR Code</option>
+			<option value="file">File</option>
+		</select>
 
 		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
 
-		<h3>Choose an image format for the QR Code</h3>
+		<label for="qrCodeFile" id="fileInputLabel" hidden>Upload a file:</label>
+
+		<input type="file" id="qrCodeFile" name="qrCodeFile" hidden/>
+
+		<h2>QR Code Image Format:</h3>
 		<select name="fileFormat" id="fileFormat">
 			<option value="png">PNG</option>
 			<option value="jpg">JPG/JPEG</option>
@@ -44,7 +54,7 @@
 			Download QR Code Image
 		</button>
 
-		<img name="qrCode" src="" alt="" id="img">
+		<img name="qrCode" src="" alt="" id="img" hidden>
 		<button type="submit" id="share">
 			Share QR Code
 		</button>

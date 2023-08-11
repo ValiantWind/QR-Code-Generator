@@ -1,4 +1,16 @@
 // The Ripple Animation for the Button
+let inputUrl = document.getElementById("inputUrl");
+let qrCodeType = document.getElementById("qrCodeType");
+let fileInputLabel = document.getElementById("fileInputLabel");
+let fileInput = document.getElementById("qrCodeFile");
+let fileFormat = document.getElementById("fileFormat").value;
+// let url = inputUrl.value;
+let qrCode = document.getElementById("img");
+const copyButton = document.getElementById("copyurl");
+const shareButton = document.getElementById("share");
+const downloadButton = document.getElementById("downloadButton");
+const downloadLink = document.getElementById("downloadLink");
+
 
 const buttons = document.getElementsByTagName("button");
 
@@ -59,56 +71,82 @@ function copyImageUrl(button, url) {
 }
 
 
+qrCodeType.addEventListener("change", () => {
+	if(qrCodeType.value === "regular"){
+		if(inputUrl.hasAttribute("hidden")){
+			inputUrl.removeAttribute("hidden");
+		}
+		if(!fileInputLabel.hasAttribute("hidden")){
+			fileInputLabel.setAttribute("hidden", true);
+		}
+		if(!fileInput.hasAttribute("hidden")){
+			fileInput.setAttribute("hidden", true);
+		}
+	} else if(qrCodeType.value === "file"){
+		inputUrl.setAttribute("hidden", true);
+
+		fileInputLabel.removeAttribute("hidden");
+		fileInput.removeAttribute("hidden");
+	}
+})
+
+function downloadImage(url, imageFormat){
+	if (downloadButton) {
+				downloadButton.addEventListener("click", () => {
+					downloadLink.href = url
+					downloadLink.download = `qrcode.${imageFormat}`
+					downloadLink.click();
+				})
+		}
+}
+
 // Where the QR Code is Generated
 function generate() {
-	let inputUrl = document.getElementById("inputUrl");
 	let inputColor = document.getElementById("inputColor").value;
-	let fileFormat = document.getElementById("fileFormat").value;
 	let url = inputUrl.value;
-	let qrCode = document.getElementById("img");
-	const copyButton = document.getElementById("copyurl");
-	const shareButton = document.getElementById("share");
-	const downloadButton = document.getElementById("downloadButton");
-	const downloadLink = document.getElementById("downloadLink");
 
 	// API Endpoint Used for the QR Code
 	const defaultApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&format=${fileFormat}`;
 
-	// We use a separate endpoint if a Hex Color is inputted
+	// // We use a separate endpoint if a Hex Color is inputted
 	const coloredApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&color=${inputColor}&format=${fileFormat}`;
 
 	// If the user has not input a Hex Color, we use the default endpoint
+	if(qrCodeType.value === "regular"){
+		if(!url){
+			alert("Please input a URL for the QR Code")
+		}
 	if (!inputColor) {
 		fetch(defaultApi).then((response) => {
 			return response.blob()
 		}).then((res) => {
 			const imageUrl = URL.createObjectURL(res);
+			if(qrCode.hasAttribute("hidden")){
+				qrCode.removeAttribute("hidden");
+			}
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
 			share(shareButton, defaultApi);
-			if (downloadButton) {
-				downloadButton.addEventListener("click", () => {
-					downloadLink.href = imageUrl
-					downloadLink.download = `qrcode.${fileFormat}`
-					downloadLink.click();
-				})
-			}
+			downloadImage(imageUrl, fileFormat);
 		})
 	} else {
 		fetch(coloredApi).then((response) => {
 			return response.blob()
 		}).then((res) => {
 			const imageUrl = URL.createObjectURL(res);
+			if(qrCode.hasAttribute("hidden")){
+				qrCode.removeAttribute("hidden");
+			}
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
 			share(shareButton, coloredApi);
-			if (downloadButton) {
-				downloadButton.addEventListener("click", () => {
-					downloadLink.href = imageUrl
-					downloadLink.download = `qrcode.${fileFormat}`
-					downloadLink.click();
-				})
-			}
+			downloadImage(imageUrl, fileFormat);
 		})
+	}
+	} else if(qrCodeType.value === "file"){
+		let selectedFile = fileInput.files[0];
+
+		
+		
 	}
 }
