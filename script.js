@@ -100,11 +100,14 @@ qrCodeType.addEventListener("change", () => {
 
 function downloadImage(url, imageFormat){
 	if (downloadButton) {
-				downloadButton.addEventListener("click", () => {
-					downloadLink.href = url
-					downloadLink.download = `qrcode.${imageFormat}`
-					downloadLink.click();
-				})
+		 downloadButton.removeEventListener("click", downloadHandler);
+
+		function downloadHandler() {
+				downloadLink.href = url;
+				downloadLink.download = `qrcode.${imageFormat}`;
+				downloadLink.click();
+		}
+			downloadButton.addEventListener("click", downloadHandler);
 		}
 }
 
