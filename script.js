@@ -4,7 +4,6 @@ let qrCodeType = document.getElementById("qrCodeType");
 let fileInputLabel = document.getElementById("fileInputLabel");
 let fileInput = document.getElementById("qrCodeFile");
 let fileFormat = document.getElementById("fileFormat").value;
-// let url = inputUrl.value;
 let qrCode = document.getElementById("img");
 const copyButton = document.getElementById("copyurl");
 const shareButton = document.getElementById("share");
@@ -87,6 +86,15 @@ qrCodeType.addEventListener("change", () => {
 
 		fileInputLabel.removeAttribute("hidden");
 		fileInput.removeAttribute("hidden");
+	} else if(qrCodeType.value == "rickroll"){
+		inputUrl.setAttribute("hidden", true);
+
+		if(!fileInputLabel.hasAttribute("hidden")){
+			fileInputLabel.setAttribute("hidden", true);
+		}
+		if(!fileInput.hasAttribute("hidden")){
+			fileInput.setAttribute("hidden", true);
+		}
 	}
 })
 
@@ -118,7 +126,7 @@ function generate() {
 		}
 	if (!inputColor) {
 		fetch(defaultApi).then((response) => {
-			return response.blob()
+			return response.blob();
 		}).then((res) => {
 			const imageUrl = URL.createObjectURL(res);
 			if(qrCode.hasAttribute("hidden")){
@@ -126,7 +134,7 @@ function generate() {
 			}
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
-			share(shareButton, defaultApi);
+			share(shareButton, imageUrl);
 			downloadImage(imageUrl, fileFormat);
 		})
 	} else {
@@ -139,14 +147,73 @@ function generate() {
 			}
 			qrCode.src = imageUrl
 			copyImageUrl(copyButton, imageUrl);
-			share(shareButton, coloredApi);
+			share(shareButton, imageUrl);
 			downloadImage(imageUrl, fileFormat);
 		})
 	}
 	} else if(qrCodeType.value === "file"){
-		let selectedFile = fileInput.files[0];
+	// 	let selectedFile = fileInput.files[0];
+
+	// 	if (!inputColor) {
+	// 	fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/watch?v=a3Z7zEc7AXQ&format=${fileFormat}`).then((response) => {
+	// 		return response.blob();
+	// 	}).then((res) => {
+	// 		const imageUrl = URL.createObjectURL(res);
+	// 		if(qrCode.hasAttribute("hidden")){
+	// 			qrCode.removeAttribute("hidden");
+	// 		}
+	// 		qrCode.src = imageUrl
+	// 		copyImageUrl(copyButton, imageUrl);
+	// 		share(shareButton, defaultApi);
+	// 		downloadImage(imageUrl, fileFormat);
+	// 	})
+	// } else {
+	// 	fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/watch?v=a3Z7zEc7AXQ&color=${inputColor}&format=${fileFormat}`).then((response) => {
+	// 		return response.blob()
+	// 	}).then((res) => {
+	// 		const imageUrl = URL.createObjectURL(res);
+	// 		if(qrCode.hasAttribute("hidden")){
+	// 			qrCode.removeAttribute("hidden");
+	// 		}
+	// 		qrCode.src = imageUrl
+	// 		copyImageUrl(copyButton, imageUrl);
+	// 		share(shareButton, coloredApi);
+	// 		downloadImage(imageUrl, fileFormat);
+	// 	})
+	// }
 
 		
 		
+	} else if(qrCodeType.value === "rickroll"){
+			if (!inputColor) {
+		fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/watch?v=a3Z7zEc7AXQ&format=${fileFormat}`).then((response) => {
+			return response.blob();
+		}).then((res) => {
+			const imageUrl = URL.createObjectURL(res);
+			if(qrCode.hasAttribute("hidden")){
+				qrCode.removeAttribute("hidden");
+			}
+			qrCode.src = imageUrl
+			copyImageUrl(copyButton, imageUrl);
+			share(shareButton, imageUrl);
+			downloadImage(imageUrl, fileFormat);
+		})
+	} else {
+		fetch(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.youtube.com/watch?v=a3Z7zEc7AXQ&color=${inputColor}&format=${fileFormat}`).then((response) => {
+			return response.blob()
+		}).then((res) => {
+			const imageUrl = URL.createObjectURL(res);
+			if(qrCode.hasAttribute("hidden")){
+				qrCode.removeAttribute("hidden");
+			}
+			qrCode.src = imageUrl
+			copyImageUrl(copyButton, imageUrl);
+			share(shareButton, imageUrl);
+			downloadImage(imageUrl, fileFormat);
+		})
 	}
+	}
+}
+
+function removeHiddenAttribute(element){
 }

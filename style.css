@@ -10,17 +10,22 @@
   font-style: normal;
 }
 
-
+body {
+	 background: rgba(18, 18, 18, 1);
+}
 
 .main{
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   flex-direction: column;
   background: rgba(18, 18, 18, 1);
 	position: absolute;
+	float: left;
+	padding-bottom: 30px;
+	
 }
 
 h1, h2, h3, h4{
@@ -76,7 +81,7 @@ button {
 	margin: 10px;
 	align-items: center;
 	align-content: center;
-	word-wrap: break-word;
+	text-align: center;
 }
 
 span.ripple {
@@ -112,4 +117,21 @@ select{
 img{
   margin: 15px;
 }
+/* styles.css */
+.button-container {
+	display: flex;
+  text-align: center; /* Center-align the buttons horizontally */
+  margin-bottom: 20px; /* Add some space between buttons and the image */
+	justify-content: left;
+  align-items: center;
+  flex-direction: column;
+}
 
+.image-container {
+    text-align: center; /* Center-align the image horizontally */
+}
+
+
+/* .heading {
+	padding: 20px;
+} */

@@ -14,12 +14,12 @@
 
 <body>
 	<div class="main">
-		<h1>QR Code Generator</h2>
-
-		<h2>QR Code Type:</h3>
+			<h1 class="heading">QR Code Generator</h1>
+		<h3>QR Code Type:</h3>
 		<select name="qrCodeType" id="qrCodeType">
-			<option value="regular">Regular QR Code</option>
-			<option value="file">File</option>
+			<option value="regular">URL</option>
+			<option value="file" hidden>File</option>
+			<option value="rickroll">Rickroll</option>
 		</select>
 
 		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
@@ -28,19 +28,24 @@
 
 		<input type="file" id="qrCodeFile" name="qrCodeFile" hidden/>
 
-		<h2>QR Code Image Format:</h3>
+		<h3>QR Code Image Format:</h3>
 		<select name="fileFormat" id="fileFormat">
 			<option value="png">PNG</option>
 			<option value="jpg">JPG/JPEG</option>
 			<option value="svg">SVG</option>
 		</select>
+<!-- 
+		<h3>QR Code Image Size:</h3>
+		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Format: [Number]x[Number] (i.e. 70x70)" /> -->
 
 		<!-- Optional Hex Color -->
-		<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color (Optional)"
+		<h3>QR Code Color (Optional)</h3>
+		<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color"
 			minlength="6" maxlength="6" />
 		<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
 
 		<br>
+		<div class="button-container">
 		<button type="submit" onclick="generate()" id="submit">
 			Generate
 		</button>
@@ -54,10 +59,13 @@
 			Download QR Code Image
 		</button>
 
-		<img name="qrCode" src="" alt="" id="img" hidden>
 		<button type="submit" id="share">
 			Share QR Code
 		</button>
+		</div>
+		<div class="image-container">
+			<img name="qrCode" src="" alt="qrCode" id="img" hidden>
+		</div>
 	</div>
 
 	<script src="script.js"></script>
