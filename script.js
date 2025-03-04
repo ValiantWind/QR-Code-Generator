@@ -100,15 +100,17 @@ function generate() {
     const inputColor = document.getElementById("inputColor").value;
     const url = inputUrl.value;
 
-    if (!validateUrlInput(url)) {
-        alert("Please input a valid URL for the QR Code");
-        return;
-    }
+	
 
     const fileFormat = document.getElementById("fileFormat").value;
     const color = inputColor || '';
 	
-	if (qrCodeType.value === "rickroll") {
+	if(qrCodeType.value === "regular") {
+		if (!validateUrlInput(url)) {
+			alert("Please input a valid URL for the QR Code");
+			return;
+		}
+	} else if (qrCodeType.value === "rickroll") {
         endpoint = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
     } else if (qrCodeType.value === "twitter") {
         endpoint = `https://x.com/${url}`;
