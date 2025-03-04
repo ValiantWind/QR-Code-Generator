@@ -19,15 +19,19 @@
 		<select name="qrCodeType" id="qrCodeType">
 			<option value="regular">URL</option>
 			<option value="twitter">Twitter/X</option>
+			<option value="sms">SMS</option>
 			<option value="rickroll">Rickroll</option>
 		</select>
 
 		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
 		<input type="text" name="" id="inputTwitterHandle" autocomplete="off" placeholder="Input Twitter Handle Here" hidden/>
 
-		<label for="qrCodeFile" id="fileInputLabel" hidden>Upload a file:</label>
-
-		<input type="file" id="qrCodeFile" name="qrCodeFile" hidden/>
+		<div id="smsInputs" hidden>
+			<label for="phoneNumber">Phone Number:</label>
+			<input type="text" id="phoneNumber" placeholder="Enter phone number">
+			<label for="message">Message:</label>
+			<textarea id="message" placeholder="Enter your message"></textarea>
+		</div>
 
 		<h3>QR Code Image Format:</h3>
 		<select name="fileFormat" id="fileFormat">
@@ -35,10 +39,7 @@
 			<option value="jpg">JPG/JPEG</option>
 			<option value="svg">SVG</option>
 		</select>
-<!-- 
-		<h3>QR Code Image Size:</h3>
-		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Format: [Number]x[Number] (i.e. 70x70)" /> -->
-
+		
 		<!-- Optional Hex Color -->
 		<h3>QR Code Color (Optional)</h3>
 		<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color"

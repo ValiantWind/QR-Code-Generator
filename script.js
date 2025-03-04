@@ -2,8 +2,9 @@
 let inputUrl = document.getElementById("inputUrl");
 let inputTwitterHandle = document.getElementById("inputTwitterHandle")
 let qrCodeType = document.getElementById("qrCodeType");
-let fileInputLabel = document.getElementById("fileInputLabel");
-let fileInput = document.getElementById("qrCodeFile");
+let smsInputs = document.getElementById("smsInputs");
+let phoneNumberInput = document.getElementById("phoneNumber");
+let messageInput = document.getElementById("message");
 let fileFormat = document.getElementById("fileFormat").value;
 let qrCode = document.getElementById("img");
 const copyButton = document.getElementById("copyurl");
@@ -70,31 +71,33 @@ function toggleElementsVisibility(elements, shouldShow) {
 }
 
 qrCodeType.addEventListener("change", () => {
-    const elementsToHideForRegular = [inputTwitterHandle];
-    const elementsToHideForTwitter = [inputUrl, shareButton];
-    const elementsToHideForRickroll = [inputUrl, inputTwitterHandle, shareButton];
+    const elementsToHideForRegular = [inputTwitterHandle, smsInputs];
+    const elementsToHideForTwitter = [inputUrl, shareButton, smsInputs];
+    const elementsToHideForRickroll = [inputUrl, inputTwitterHandle, shareButton, smsInputs];
+	const elementsToHideForSMS = [inputUrl, inputTwitterHandle];
 
     switch (qrCodeType.value) {
+		case "sms": 
+			toggleElementsVisibility([smsInputs], true);
+			toggleElementsVisibility(elementsToHideForSMS, false);
+			break;
         case "regular":
             toggleElementsVisibility([inputUrl, inputTwitterHandle], true);
             toggleElementsVisibility(elementsToHideForRegular, false);
             break;
         case "twitter":
-            toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
+            toggleElementsVisibility([inputUrl, inputTwitterHandle, smsInputs], false);
             toggleElementsVisibility([inputTwitterHandle], true);
             toggleElementsVisibility(elementsToHideForTwitter, false);
             break;
         case "rickroll":
-            toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
+            toggleElementsVisibility([inputUrl, inputTwitterHandle, smsInputs], false);
             toggleElementsVisibility(elementsToHideForRickroll, false);
             break;
         default:
             toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
             toggleElementsVisibility([fileInputLabel, fileInput], false);
     }
-
-    toggleElementVisibility(fileInputLabel, false);
-    toggleElementVisibility(fileInput, false);
 });
 
 function downloadImage(url, format) {
@@ -104,6 +107,29 @@ function downloadImage(url, format) {
         downloadLink.click();
     });
 }
+
+// SMS QR Code Handled Seperately
+function generateSMSQRCode() {
+    const phoneNumber = phoneNumberInput.value;
+    const message = messageInput.value;
+    
+    if (!phoneNumber || !message) {
+        alert("Please enter both phone number and message.");
+        return;
+    }
+
+    const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
+
+    fetchQRCode(smsUrl, "", "png").then(res => {
+        const imageUrl = URL.createObjectURL(res);
+        qrCode.hidden = false;
+        qrCode.src = imageUrl;
+        copyImageUrl(copyButton, imageUrl);
+        share(shareButton, imageUrl);
+        downloadImage(imageUrl, "png");
+    });
+}
+
 
 
 function generate() {
@@ -125,6 +151,9 @@ function generate() {
         endpoint = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
     } else if (qrCodeType.value === "twitter") {
         endpoint = `https://x.com/${url}`;
+    } else if (qrCodeType.value === "sms") {
+        generateSMSQRCode();
+        return;
     }
 
     fetchQRCode(endpoint, color, fileFormat).then(res => {
