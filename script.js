@@ -57,37 +57,45 @@ function copyImageUrl(button, url) {
     });
 }
 
+function toggleElementsVisibility(elements, shouldShow) {
+    elements.forEach(element => {
+        if (element) {
+            if (shouldShow) {
+                element.removeAttribute("hidden");
+            } else {
+                element.setAttribute("hidden", true);
+            }
+        }
+    });
+}
+
 qrCodeType.addEventListener("change", () => {
+    const elementsToHideForRegular = [inputTwitterHandle];
+    const elementsToHideForTwitter = [inputUrl, shareButton];
+    const elementsToHideForRickroll = [inputUrl, inputTwitterHandle, shareButton];
 
-	switch (qrCodeType.value) {
-		case "regular": 
-			inputUrl.removeAttribute("hidden");
-			inputTwitterHandle.setAttribute("hidden", true);
-			break;
-		case "twitter": 
-			inputUrl.setAttribute("hidden", true);
-			inputTwitterHandle.removeAttribute("hidden");
-			shareButton.setAttribute("hidden", true);
-			break;
-		case "rickroll": 
-			inputUrl.setAttribute("hidden", true);
-			inputTwitterHandle.setAttribute("hidden", true);
-			shareButton.setAttribute("hidden", true);
-			break;
-	}
+    switch (qrCodeType.value) {
+        case "regular":
+            toggleElementsVisibility([inputUrl, inputTwitterHandle], true);
+            toggleElementsVisibility(elementsToHideForRegular, false);
+            break;
+        case "twitter":
+            toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
+            toggleElementsVisibility([inputTwitterHandle], true);
+            toggleElementsVisibility(elementsToHideForTwitter, false);
+            break;
+        case "rickroll":
+            toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
+            toggleElementsVisibility(elementsToHideForRickroll, false);
+            break;
+        default:
+            toggleElementsVisibility([inputUrl, inputTwitterHandle], false);
+            toggleElementsVisibility([fileInputLabel, fileInput], false);
+    }
 
-   
     toggleElementVisibility(fileInputLabel, false);
     toggleElementVisibility(fileInput, false);
 });
-
-function toggleElementVisibility(element, shouldShow) {
-    if (shouldShow) {
-        element.removeAttribute("hidden");
-    } else {
-        element.setAttribute("hidden", true);
-    }
-}
 
 function downloadImage(url, format) {
     downloadButton.addEventListener("click", () => {
