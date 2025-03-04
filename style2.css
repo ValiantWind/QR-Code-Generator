@@ -1,45 +1,31 @@
-/* Updated CSS for Side-by-Side Layout */
-* {
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Gotham Screen Smart';
+    src: local('Gotham Screen Smart Book'), local('Gotham-Screen-Smart-Book'),
+    url('./fonts/GothamSSm-Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    background: rgba(18, 18, 18, 1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
+	 background: rgba(18, 18, 18, 1);
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    max-width: 1200px;
-}
-
-.main {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.image-container {
-    width: 45%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.image-container img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+.main{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(18, 18, 18, 1);
+	position: absolute;
+	float: left;
+	padding-bottom: 30px;
+	
 }
 
 h1, h2, h3, h4{
@@ -127,3 +113,25 @@ select{
   color: white;
   border: none;
 }
+
+img{
+  margin: 15px;
+}
+/* styles.css */
+.button-container {
+	display: flex;
+  text-align: center; /* Center-align the buttons horizontally */
+  margin-bottom: 20px; /* Add some space between buttons and the image */
+	justify-content: left;
+  align-items: center;
+  flex-direction: column;
+}
+
+.image-container {
+    text-align: center; /* Center-align the image horizontally */
+}
+
+
+/* .heading {
+	padding: 20px;
+} */
