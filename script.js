@@ -67,10 +67,12 @@ qrCodeType.addEventListener("change", () => {
 		case "twitter": 
 			inputUrl.setAttribute("hidden", true);
 			inputTwitterHandle.removeAttribute("hidden");
+			shareButton.setAttribute("hidden", true);
 			break;
 		case "rickroll": 
 			inputUrl.setAttribute("hidden", true);
 			inputTwitterHandle.setAttribute("hidden", true);
+			shareButton.setAttribute("hidden", true);
 			break;
 	}
 
@@ -99,6 +101,7 @@ function downloadImage(url, format) {
 function generate() {
     const inputColor = document.getElementById("inputColor").value;
     const url = inputUrl.value;
+	let endpoint = url;
 
 	
 
