@@ -134,5 +134,5 @@ function validateUrlInput(url) {
 		'(\\#[-a-z\\d_]*)?$', // fragment locator
 	  'i'
 	);
-	return pattern.test(str);
+	return pattern.test(url);
   }
