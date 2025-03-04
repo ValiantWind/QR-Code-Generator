@@ -58,20 +58,17 @@ function copyImageUrl(button, url) {
 }
 
 qrCodeType.addEventListener("change", () => {
-    const isRegular = qrCodeType.value === "regular";
-    const isTwitter = qrCodeType.value === "twitter";
-    const isRickroll = qrCodeType.value === "rickroll";
 
 	switch (qrCodeType.value) {
-		case isRegular: 
+		case "regular": 
 			inputUrl.removeAttribute("hidden");
 			inputTwitterHandle.setAttribute("hidden", true);
 			break;
-		case isTwitter: 
+		case "twitter": 
 			inputUrl.setAttribute("hidden", true);
 			inputTwitterHandle.removeAttribute("hidden");
 			break;
-		case isRickroll: 
+		case "rickroll": 
 			inputUrl.setAttribute("hidden", true);
 			inputTwitterHandle.setAttribute("hidden", true);
 			break;
