@@ -78,6 +78,7 @@ qrCodeType.addEventListener("change", () => {
 
     switch (qrCodeType.value) {
 		case "sms": 
+			smsInputs.setAttribute("display", "flex");
 			toggleElementsVisibility([smsInputs], true);
 			toggleElementsVisibility(elementsToHideForSMS, false);
 			break;

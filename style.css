@@ -130,3 +130,26 @@ flex-direction: column;
 .image-container {
   text-align: center; /* Center-align the image horizontally */
 }
+
+#smsInputs {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width */
+  flex-direction: column; /* This makes the inputs stack vertically */
+}
+
+#smsInputs label {
+  margin-bottom: 5px; /* Adds some space below the label */
+}
+
+#smsInputs input, #smsInputs textarea {
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width */
+}
+
+/* Optional: Adjust the textarea size */
+#smsInputs textarea {
+  height: 100px; /* Adjust the height of the textarea */
+}
