@@ -1,34 +1,44 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 @font-face {
   font-family: 'Gotham Screen Smart';
   src: local('Gotham Screen Smart Book'), local('Gotham-Screen-Smart-Book'),
-  url('./fonts/GothamSSm-Book.woff2') format('woff2');
-font-weight: normal;
-font-style: normal;
+       url('./fonts/GothamSSm-Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
- background: rgba(18, 18, 18, 1);
+  background: rgba(18, 18, 18, 1);
+  min-height: 100vh;
+  width: 100%;
 }
 
-.main{
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: left;
-align-items: center;
-flex-direction: column;
-background: rgba(18, 18, 18, 1);
-position: absolute;
-float: left;
-padding-bottom: 30px;
-
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(18, 18, 18, 1);
+  position: relative;
+  padding-bottom: 30px;
 }
 
-h1, h2, h3, h4{
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+
+h1, h2, h3, h4 {
   color: white;
   margin: 15px;
   font-family: 'Gotham Screen Smart', sans-serif;
@@ -37,7 +47,8 @@ h1, h2, h3, h4{
   line-height: 140%;
 }
 
-input{
+
+input {
   width: 300px;
   height: 40px;
   background: transparent;
@@ -50,7 +61,7 @@ input{
   font-family: 'Gotham Screen Smart', sans-serif;
 }
 
-label{
+label {
   width: 300px;
   height: 40px;
   background: transparent;
@@ -64,92 +75,148 @@ label{
 }
 
 button {
-position: relative;
-overflow: hidden;
-display: block;
-transition: background 400ms;
-color: #171717;
-background-color: #2BB1FF;
-padding: 1rem 2rem;
-font-family: 'Gotham Screen Smart', Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-font-size: 1.3rem;
-outline: 0;
-border: none;
-border-radius: 0.25rem;
-box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* black with 30% opacity */
-cursor: pointer;
-margin: 10px;
-align-items: center;
-align-content: center;
-text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  transition: background 400ms;
+  color: #171717;
+  background-color: #2BB1FF;
+  padding: 1rem 2rem;
+  font-family: 'Gotham Screen Smart', Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1.3rem;
+  outline: 0;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin: 10px;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 span.ripple {
-position: absolute;
-border-radius: 50%;
-transform: scale(0);
-animation: ripple 600ms linear;
-background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 @keyframes ripple {
-to {
-  transform: scale(4);
-  opacity: 0;
-}
-}
-
-button:hover{
-text-decoration: none;
-background-color: rgba(43, 177, 255, 0.8);
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
-select{
-font-family: 'Gotham Screen Smart', sans-serif;
-background: transparent;
-font-size: 1.1rem;
-margin: 15px;
-background-color: #171717;
-color: white;
-border: none;
+button:hover {
+  text-decoration: none;
+  background-color: rgba(43, 177, 255, 0.8);
 }
 
-img{
-margin: 15px;
+select {
+  font-family: 'Gotham Screen Smart', sans-serif;
+  background: transparent;
+  font-size: 1.1rem;
+  margin: 15px;
+  background-color: #171717;
+  color: white;
+  border: none;
 }
-/* styles.css */
+
+img {
+  margin: 15px;
+  max-width: 100%;
+  height: auto;
+}
+
 .button-container {
-display: flex;
-text-align: center; /* Center-align the buttons horizontally */
-margin-bottom: 20px; /* Add some space between buttons and the image */
-justify-content: left;
-align-items: center;
-flex-direction: column;
+  display: flex;
+  text-align: center;
+  margin-bottom: 20px;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
 }
 
 .image-container {
-  text-align: center; /* Center-align the image horizontally */
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#smsInputs {
+#smsInputs, #emailInputs {
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* Ensures padding is included in the element's total width */
-  flex-direction: column; /* This makes the inputs stack vertically */
+  box-sizing: border-box;
+  flex-direction: column;
 }
-
-#smsInputs label {
-  margin-bottom: 5px; /* Adds some space below the label */
+#smsInputs label, #emailInputs label {
+  margin-bottom: 5px;
 }
-
-#smsInputs input, #smsInputs textarea {
+#smsInputs input, #smsInputs textarea, #emailInputs input, #emailInputs textarea {
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* Ensures padding is included in the element's total width */
+  box-sizing: border-box;
+}
+#smsInputs textarea, #emailInputs textarea {
+  height: 100px;
 }
 
-/* Optional: Adjust the textarea size */
-#smsInputs textarea {
-  height: 100px; /* Adjust the height of the textarea */
+.main.qr-generated {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 2rem;
+}
+
+.main.qr-generated .menu,
+.main.qr-generated .image-container {
+  flex: 1 1 50%;
+  width: 50%;
+  height: auto;
+}
+
+.main.qr-generated .menu {
+  max-width: 600px;
+  align-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+.main.qr-generated .button-container {
+  align-items: center;
+  text-align: center;
+}
+
+.main.qr-generated .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main.qr-generated #img {
+  max-width: 70vmin;
+  max-height: 70vmin;
+}
+
+@media (max-width: 768px) {
+  .main.qr-generated {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .main.qr-generated .menu,
+  .main.qr-generated .image-container {
+    width: 100%;
+    flex: unset;
+  }
+  .main.qr-generated .menu {
+    align-items: center;
+    text-align: center;
+  }
 }

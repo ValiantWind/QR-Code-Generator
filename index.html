@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta name="description"
@@ -11,68 +10,119 @@
 	<title>QR Code Generator</title>
 	<link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-	<div class="main">
+	<div class="main" id="main">
+		<div class="menu" id="menu">
 			<h1 class="heading">QR Code Generator</h1>
-		<h3>QR Code Type:</h3>
-		<select name="qrCodeType" id="qrCodeType">
-			<option value="regular">URL</option>
-			<option value="twitter">Twitter/X</option>
-			<option value="sms">SMS</option>
-			<option value="rickroll">Rickroll</option>
-		</select>
 
-		<input type="text" name="" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
-		<input type="text" name="" id="inputTwitterHandle" autocomplete="off" placeholder="Input Twitter Handle Here" hidden/>
+			<h3>QR Code Type:</h3>
+			<select name="qrCodeType" id="qrCodeType">
+				<option value="regular">URL</option>
+				<option value="twitter">Twitter/X</option>
+				<option value="sms">SMS</option>
+                <option value="email">Email</option>
+				<option value="rickroll">Rickroll</option>
+                <option value="ios">iOS Apps</option>
+			</select>
 
-		<div id="smsInputs" hidden>
-			<label for="phoneNumber">Phone Number:</label>
-			<input type="text" id="phoneNumber" placeholder="Enter phone number">
-			<label for="message">Message:</label>
-			<textarea id="message" placeholder="Enter your message"></textarea>
+            <select name="iosAppType" id="iosAppType" hidden>
+				<option value="app-store">App Store</option>
+                <option value="books">Books</option>
+				<option value="calc">Calculator</option>
+                <option value="calendar">Calendar</option>
+                <option value="camera">Camera</option>
+				<option value="clips">Clips</option>
+                <option value="contacts">Contacts</option>
+                <option value="facetime">FaceTime</option>
+				<option value="files">Files</option>
+				<option value="find-my">Find My</option>
+                <option value="fitness">Fitness</option>
+				<option value="freeform">Freeform</option>
+                <option value="garageband">GarageBand</option>
+                <option value="health">Health</option>
+				<option value="home">Home</option>
+				<option value="imovie">iMovie</option>
+                <option value="itunes">iTunes Store</option>
+				<option value="keynote">Keynote</option>
+                <option value="maps">Maps</option>
+                <option value="mail">Mail</option>
+                <option value="messages">Messages</option>
+				<option value="music">Music</option>
+                <option value="news">News</option>
+                <option value="notes">Notes</option>
+				<option value="numbers">Numbers</option>
+                <option value="phone">Phone</option>
+				<option value="photos">Photos</option>
+                <option value="podcasts">Podcasts</option>
+                <option value="settings">Settings</option>
+                <option value="reminders">Reminders</option>
+                <option value="safari">Safari</option>
+                <option value="shortcuts">Shortcuts</option>
+				<option value="stocks">Stocks</option>
+                <option value="support">Support</option>
+				<option value="testflight">TestFlight</option>
+                <option value="TV">TV</option>
+				<option value="TV Remote">TV Remote (iOS 16+)</option>
+                <option value="voicememos">Voice Memos</option>
+                <option value="wallet">Wallet</option>
+				<option value="watch">My Watch</option>
+			</select>
+
+            <select name="facetimeOptions" id="facetimeOptions" hidden>
+				<option value="audio">Audio Call</option>
+				<option value="video">Video Call</option>
+			</select>
+
+            <input type="text" id="facetimeInput" autocomplete="off" placeholder="Input Email/Phone Number Here" hidden/>
+
+			<input type="text" id="inputUrl" autocomplete="off" placeholder="Input URL Here" />
+			<input type="text" id="inputTwitterHandle" autocomplete="off" placeholder="Input Twitter Handle Here" hidden />
+            
+            <div id="emailInputs" hidden>
+				<label for="emailAddress">To:</label>
+				<input type="text" id="emailAddress" placeholder="Enter email address">
+				<label for="emailSubject">Subject:</label>
+                <input type="text" id="emailSubject" placeholder="Enter email subject">
+                <label for="emailBody">Body:</label>
+				<textarea id="emailBody" placeholder="Enter email body"></textarea>
+			</div>
+
+			<div id="smsInputs" hidden>
+				<label for="phoneNumber">Phone Number:</label>
+				<input type="text" id="phoneNumber" placeholder="Enter phone number">
+				<label for="message">Message:</label>
+				<textarea id="message" placeholder="Enter your message"></textarea>
+			</div>
+
+			<h3>QR Code Image Format:</h3>
+			<select name="fileFormat" id="fileFormat">
+				<option value="png">PNG</option>
+				<option value="jpg">JPG/JPEG</option>
+				<option value="svg">SVG</option>
+			</select>
+
+			<h3>QR Code Color (Optional)</h3>
+			<input type="text" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color"
+				minlength="6" maxlength="6" />
+			<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
+
+			<br>
+			<div class="button-container">
+				<button type="button" onclick="generate()" id="submit">Generate</button>
+				<button type="button" id="copyurl">Copy Image URL</button>
+				<button type="button" id="downloadButton">
+					<a id="downloadLink"></a>
+					Download QR Code Image
+				</button>
+				<button type="button" id="share">Share QR Code</button>
+			</div>
 		</div>
 
-		<h3>QR Code Image Format:</h3>
-		<select name="fileFormat" id="fileFormat">
-			<option value="png">PNG</option>
-			<option value="jpg">JPG/JPEG</option>
-			<option value="svg">SVG</option>
-		</select>
-
-		
-		<!-- Optional Hex Color -->
-		<h3>QR Code Color (Optional)</h3>
-		<input type="text" name="" id="inputColor" autocomplete="off" placeholder="Enter a Hex Color"
-			minlength="6" maxlength="6" />
-		<h4>(Don't put the # in the beginning of the Hex Color Code)</h4>
-
-		<br>
-		<div class="button-container">
-		<button type="submit" onclick="generate()" id="submit">
-			Generate
-		</button>
-
-		<button type="submit" id="copyurl">
-			Copy Image URL
-		</button>
-
-		<button type="submit" id="downloadButton">
-			<a id="downloadLink"></a>
-			Download QR Code Image
-		</button>
-
-		<button type="submit" id="share">
-			Share QR Code
-		</button>
-		</div>
-		<div class="image-container">
+		<div class="image-container" id="qrDisplay">
 			<img name="qrCode" src="" alt="qrCode" id="img" hidden>
 		</div>
 	</div>
 
 	<script src="script.js"></script>
-
 </body>
-
 </html>
