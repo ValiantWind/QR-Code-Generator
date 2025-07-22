@@ -8,7 +8,8 @@ let emailInputs = document.getElementById("emailInputs");
 let emailAddress = document.getElementById("emailAddress");
 let emailSubject = document.getElementById("emailSubject");
 let emailBody = document.getElementById("emailBody");
-let iosAppType = document.getElementById("iosAppType")
+let iosAppType = document.getElementById("iosAppType");
+let iosAppTypeLabel = document.getElementById("iosAppTypeLabel");
 let qrCode = document.getElementById("img");
 const copyButton = document.getElementById("copyurl");
 const shareButton = document.getElementById("share");
@@ -104,32 +105,38 @@ qrCodeType.addEventListener("change", () => {
             inputUrl.setAttribute("hidden", true);
             inputTwitterHandle.setAttribute("hidden", true);
             iosAppType.setAttribute("hidden", true);
+            iosAppTypeLabel.setAttribute("hidden", true);
         break;
         case "regular":
             inputUrl.removeAttribute("hidden");
             inputTwitterHandle.setAttribute("hidden", true);
             iosAppType.setAttribute("hidden", true);
+            iosAppTypeLabel.setAttribute("hidden", true);
         break; 
         case "email":
             emailInputs.style.display = "flex";
             inputUrl.setAttribute("hidden", true);
             inputTwitterHandle.setAttribute("hidden", true);
             iosAppType.setAttribute("hidden", true);
+            iosAppTypeLabel.setAttribute("hidden", true);
         break;
         case "twitter":
             inputUrl.setAttribute("hidden", true);
             inputTwitterHandle.removeAttribute("hidden");
             iosAppType.setAttribute("hidden", true);
+            iosAppTypeLabel.setAttribute("hidden", true);
         break;
         case "rickroll":
             inputUrl.setAttribute("hidden", true);
             inputTwitterHandle.setAttribute("hidden", true);
             iosAppType.setAttribute("hidden", true);
+            iosAppTypeLabel.setAttribute("hidden", true);
         break;
          case "ios":
             inputUrl.setAttribute("hidden", true);
             inputTwitterHandle.setAttribute("hidden", true);
             iosAppType.removeAttribute("hidden");
+            iosAppTypeLabel.removeAttribute("hidden");
         break;
   }
 });
