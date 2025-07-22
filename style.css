@@ -72,6 +72,9 @@ label {
   color: white;
   padding: 0 10px;
   font-family: 'Gotham Screen Smart', sans-serif;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 button {
