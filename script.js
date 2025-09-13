@@ -8,7 +8,7 @@ const inputUrl = document.getElementById("inputUrl");
 const inputTwitterHandle = document.getElementById("inputTwitterHandle");
 const emailInputs = document.getElementById("emailInputs");
 const smsInputs = document.getElementById("smsInputs");
-const iosAppInputs = document.getElementById("ios-app-inputs");
+// const iosAppInputs = document.getElementById("ios-app-inputs");
 
 
 const QR_CODE_TYPES = [
@@ -59,30 +59,30 @@ const QR_CODE_TYPES = [
             return `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
     },
-    {
-        id: "ios",
-        label: "iOS Apps",
-        visibleInputs: ["iosAppInputs"],
-        handler: () => {
-            const iosAppType = document.getElementById("iosAppType").value;
-            const iosSchemeMap = {
-                "app-store": "itms-apps://itunes.apple.com", "books": "ibooks://",
-                "calc": "calc://", "calendar": "x-apple-calevent://", "camera": "camera://",
-                "clips": "clips://", "contacts": "contact://", "facetime": "facetime-open-link://",
-                "files": "shareddocuments://", "find-my": "findmy://", "fitness": "fitnessapp://",
-                "freeform": "freeform://", "garageband": "garageband://", "health": "x-apple-health://",
-                "home": "x-hm://", "imovie": "imovie://", "itunes": "itms://", "keynote": "x-keynote-live://",
-                "maps": "maps://", "mail": "message://", "messages": "messages://", "music": "music://",
-                "news": "applenews://", "notes": "mobilenotes://", "numbers": "com.apple.iwork.numbers-share://",
-                "phone": "mobilephone://", "photos": "photos://", "podcasts": "podcasts://",
-                "settings": "prefs://", "reminders": "x-apple-reminder://", "safari": "x-web-search://",
-                "shortcuts": "shortcuts://", "stocks": "stocks://", "support": "applesupport://",
-                "testflight": "itms-beta://", "TV": "videos://", "TV Remote": "tvremote://",
-                "voicememos": "voicememos://", "wallet": "wallet://", "watch": "bridge://",
-            };
-            return iosSchemeMap[iosAppType] || null;
-        }
-    },
+    // {
+    //     id: "ios",
+    //     label: "iOS Apps",
+    //     visibleInputs: ["iosAppInputs"],
+    //     handler: () => {
+    //         const iosAppType = document.getElementById("iosAppType").value;
+    //         const iosSchemeMap = {
+    //             "app-store": "itms-apps://itunes.apple.com", "books": "ibooks://",
+    //             "calc": "calc://", "calendar": "x-apple-calevent://", "camera": "camera://",
+    //             "clips": "clips://", "contacts": "contact://", "facetime": "facetime-open-link://",
+    //             "files": "shareddocuments://", "find-my": "findmy://", "fitness": "fitnessapp://",
+    //             "freeform": "freeform://", "garageband": "garageband://", "health": "x-apple-health://",
+    //             "home": "x-hm://", "imovie": "imovie://", "itunes": "itms://", "keynote": "x-keynote-live://",
+    //             "maps": "maps://", "mail": "message://", "messages": "messages://", "music": "music://",
+    //             "news": "applenews://", "notes": "mobilenotes://", "numbers": "com.apple.iwork.numbers-share://",
+    //             "phone": "mobilephone://", "photos": "photos://", "podcasts": "podcasts://",
+    //             "settings": "prefs://", "reminders": "x-apple-reminder://", "safari": "x-web-search://",
+    //             "shortcuts": "shortcuts://", "stocks": "stocks://", "support": "applesupport://",
+    //             "testflight": "itms-beta://", "TV": "videos://", "TV Remote": "tvremote://",
+    //             "voicememos": "voicememos://", "wallet": "wallet://", "watch": "bridge://",
+    //         };
+    //         return iosSchemeMap[iosAppType] || null;
+    //     }
+    // },
     {
         id: "rickroll",
         label: "Rickroll",
