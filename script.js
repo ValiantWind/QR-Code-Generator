@@ -23,10 +23,29 @@ const QR_CODE_TYPES = [
         }
     },
     {
-        id: "twitter",
-        label: "Twitter/X",
-        visibleInputs: ["inputTwitterHandle"],
-        handler: () => `https://x.com/${inputTwitterHandle.value}`
+        id: "socialMedia",
+        label: "Social Media",
+        visibleInputs: ["socialMediaInputs"],
+        handler: () => {
+            const socialMediaType = document.getElementById("socialMediaType").value;
+            const username = document.getElementById("username").value;
+            
+            let link;
+
+            switch (socialMediaType) {
+                case "instagram": 
+                    link = `https://www.instagram.com/${username}`;
+                    break;
+                case "linkedin": 
+                    link = `https://www.linkedin.com/in/${username}`
+                    break;
+                case "twitter": 
+                    link = `https://www.x.com/${username}`;
+                    break;
+            }
+           
+            return link;
+        }
     },
     {
         id: "phoneNumber",
