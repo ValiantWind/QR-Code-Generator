@@ -24,7 +24,7 @@ const QR_CODE_TYPES = [
     },
     {
         id: "socialMedia",
-        label: "Social Media",
+        label: "Social Media/Specific Apps",
         visibleInputs: ["socialMediaInputs"],
         handler: () => {
             const socialMediaType = document.getElementById("socialMediaType").value;
