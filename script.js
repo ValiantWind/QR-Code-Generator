@@ -3,12 +3,10 @@ const contentInputsContainer = document.getElementById("content-inputs");
 const qrDisplay = document.getElementById("qrDisplay");
 const qrCodeImg = document.getElementById("img");
 const downloadLink = document.getElementById("downloadLink");
-
 const inputUrl = document.getElementById("inputUrl");
 const inputTwitterHandle = document.getElementById("inputTwitterHandle");
 const emailInputs = document.getElementById("emailInputs");
 const smsInputs = document.getElementById("smsInputs");
-// const iosAppInputs = document.getElementById("ios-app-inputs");
 
 
 const QR_CODE_TYPES = [
@@ -29,6 +27,20 @@ const QR_CODE_TYPES = [
         label: "Twitter/X",
         visibleInputs: ["inputTwitterHandle"],
         handler: () => `https://x.com/${inputTwitterHandle.value}`
+    },
+    {
+        id: "phoneNumber",
+        label: "Phone Call",
+        visibleInputs: ["phoneNumberInputs"],
+        handler: () => {
+            const telNumber = document.getElementById("telNumber").value;
+            const countryCode = document.getElementById("countryCode").value;
+            if (!telNumber) {
+                alert("Please enter at least a phone number.");
+                return null;
+            }
+            return `tel:${countryCode ?? ""}${telNumber}`;
+        }
     },
     {
         id: "sms",

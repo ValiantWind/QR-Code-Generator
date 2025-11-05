@@ -85,6 +85,26 @@ textarea {
     margin-bottom: 10px;
 }
 
+.inline-input-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+.country-code-input {
+    width: 80px;
+    flex: 0 0 80px;
+    margin-bottom: 0; 
+}
+
+.phone-number-input {
+    flex-grow: 1;
+    width: auto;
+    margin-bottom: 0;
+}
+
 .divider {
     border: none;
     height: 1px;

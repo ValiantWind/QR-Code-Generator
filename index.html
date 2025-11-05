@@ -18,6 +18,13 @@
             <div id="content-inputs">
                 <input type="text" id="inputUrl" autocomplete="off" placeholder="https://example.com" />
                 <input type="text" id="inputTwitterHandle" autocomplete="off" placeholder="Twitter Handle (without @)" hidden />
+                 <div id="phoneNumberInputs" class="input-group" hidden>
+
+                    <div class="inline-input-group">
+                        <input type="tel" id="countryCode" placeholder="+1" class="country-code-input">
+                        <input type="tel" id="telNumber" placeholder="Phone Number" class="phone-number-input">
+                    </div>
+                </div>
                 <div id="emailInputs" class="input-group" hidden>
                     <input type="text" id="emailAddress" placeholder="To: recipient@example.com">
                     <input type="text" id="emailSubject" placeholder="Subject">
