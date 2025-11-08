@@ -90,30 +90,6 @@ const QR_CODE_TYPES = [
             return `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
     },
-    // {
-    //     id: "ios",
-    //     label: "iOS Apps",
-    //     visibleInputs: ["iosAppInputs"],
-    //     handler: () => {
-    //         const iosAppType = document.getElementById("iosAppType").value;
-    //         const iosSchemeMap = {
-    //             "app-store": "itms-apps://itunes.apple.com", "books": "ibooks://",
-    //             "calc": "calc://", "calendar": "x-apple-calevent://", "camera": "camera://",
-    //             "clips": "clips://", "contacts": "contact://", "facetime": "facetime-open-link://",
-    //             "files": "shareddocuments://", "find-my": "findmy://", "fitness": "fitnessapp://",
-    //             "freeform": "freeform://", "garageband": "garageband://", "health": "x-apple-health://",
-    //             "home": "x-hm://", "imovie": "imovie://", "itunes": "itms://", "keynote": "x-keynote-live://",
-    //             "maps": "maps://", "mail": "message://", "messages": "messages://", "music": "music://",
-    //             "news": "applenews://", "notes": "mobilenotes://", "numbers": "com.apple.iwork.numbers-share://",
-    //             "phone": "mobilephone://", "photos": "photos://", "podcasts": "podcasts://",
-    //             "settings": "prefs://", "reminders": "x-apple-reminder://", "safari": "x-web-search://",
-    //             "shortcuts": "shortcuts://", "stocks": "stocks://", "support": "applesupport://",
-    //             "testflight": "itms-beta://", "TV": "videos://", "TV Remote": "tvremote://",
-    //             "voicememos": "voicememos://", "wallet": "wallet://", "watch": "bridge://",
-    //         };
-    //         return iosSchemeMap[iosAppType] || null;
-    //     }
-    // },
     {
         id: "rickroll",
         label: "Rickroll",
@@ -136,27 +112,50 @@ async function generate() {
             throw new Error("Invalid QR code type selected.");
         }
 
-        const endpoint = typeConfig.handler();
+        const qrText = typeConfig.handler();
         
-        if (endpoint === null) {
+        if (qrText === null) {
             return;
         }
 
-        const color = document.getElementById("inputColor").value || '';
-        const fileFormat = document.getElementById("fileFormat").value;
-        const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(endpoint)}&color=${color}&format=${fileFormat}`;
+        const color = document.getElementById("inputColor").value || '#000000';
+        const bgColor = document.getElementById("inputBgColor").value || '#FFFFFF';
+        const size = document.getElementById("inputSize").value || '512';
+        const logoUrl = document.getElementById("inputLogoUrl").value;
+        const logoFile = document.getElementById("inputLogoFile").files[0];
+
+        const formData = new FormData();
+        formData.append("text", qrText);
+        formData.append("size", size);
+        formData.append("color", color);
+        formData.append("bgcolor", bgColor);
+        formData.append("type", "png");
         
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error("Failed to fetch QR code from API.");
+        if (logoFile) {
+            formData.append("logoFile", logoFile);
+        } else if (logoUrl) {
+            formData.append("logoUrl", logoUrl);
         }
+
+        const apiUrl = "https://api.valiantwind.dev/v1/generate-qr";
+        
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: "Failed to generate QR code. Unknown API error." }));
+            throw new Error(errorData.error || `API Error: ${response.status}`);
+        }
+
         const blob = await response.blob();
         const imageUrl = URL.createObjectURL(blob);
-        showQRCode(imageUrl, fileFormat);
+        showQRCode(imageUrl, "png");
 
     } catch (error) {
         console.error("Failed to generate QR code:", error);
-        alert("Could not generate QR code. Please try again.");
+        alert(`Could not generate QR code: ${error.message}`);
     } finally {
         submitButton.textContent = originalButtonText;
         submitButton.disabled = false;

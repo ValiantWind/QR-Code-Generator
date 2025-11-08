@@ -19,7 +19,6 @@
                 <input type="text" id="inputUrl" autocomplete="off" placeholder="https://example.com" />
                 <input type="text" id="inputTwitterHandle" autocomplete="off" placeholder="Twitter Handle (without @)" hidden />
                  <div id="phoneNumberInputs" class="input-group" hidden>
-
                     <div class="inline-input-group">
                         <input type="tel" id="countryCode" placeholder="+1" class="country-code-input">
                         <input type="tel" id="telNumber" placeholder="Phone Number" class="phone-number-input">
@@ -48,68 +47,36 @@
                     </select>
                     <input type="text" id="username" placeholder="Username">
                 </div>
-                <!-- <div id="iosAppInputs" class="input-group" hidden>
-                    <label for="iosAppType" id="iosAppTypeLabel">Choose iOS App:</label>
-                    <select name="iosAppType" id="iosAppType">
-                        <option value="app-store">App Store</option>
-                        <option value="books">Books</option>
-                        <option value="calc">Calculator</option>
-                        <option value="calendar">Calendar</option>
-                        <option value="camera">Camera</option>
-                        <option value="clips">Clips</option>
-                        <option value="contacts">Contacts</option>
-                        <option value="facetime">FaceTime</option>
-                        <option value="files">Files</option>
-                        <option value="find-my">Find My</option>
-                        <option value="fitness">Fitness</option>
-                        <option value="freeform">Freeform</option>
-                        <option value="garageband">GarageBand</option>
-                        <option value="health">Health</option>
-                        <option value="home">Home</option>
-                        <option value="imovie">iMovie</option>
-                        <option value="itunes">iTunes Store</option>
-                        <option value="keynote">Keynote</option>
-                        <option value="maps">Maps</option>
-                        <option value="mail">Mail</option>
-                        <option value="messages">Messages</option>
-                        <option value="music">Music</option>
-                        <option value="news">News</option>
-                        <option value="notes">Notes</option>
-                        <option value="numbers">Numbers</option>
-                        <option value="phone">Phone</option>
-                        <option value="photos">Photos</option>
-                        <option value="podcasts">Podcasts</option>
-                        <option value="settings">Settings</option>
-                        <option value="reminders">Reminders</option>
-                        <option value="safari">Safari</option>
-                        <option value="shortcuts">Shortcuts</option>
-                        <option value="stocks">Stocks</option>
-                        <option value="support">Support</option>
-                        <option value="testflight">TestFlight</option>
-                        <option value="TV">TV</option>
-                        <option value="TV Remote">TV Remote (iOS 16+)</option>
-                        <option value="voicememos">Voice Memos</option>
-                        <option value="wallet">Wallet</option>
-                        <option value="watch">My Watch</option>
-                    </select>
-                </div> -->
-            </div>
+                </div>
 
             <hr class="divider">
 
             <div class="customization-group">
                 <div class="form-group">
-                    <label for="fileFormat">Format</label>
-                    <select name="fileFormat" id="fileFormat">
-                        <option value="png">PNG</option>
-                        <option value="jpg">JPG</option>
-                        <option value="svg">SVG</option>
-                    </select>
+                    <label for="inputSize">Size (px)</label>
+                    <input type="number" id="inputSize" autocomplete="off" placeholder="e.g., 512" value="512" />
+                </div>
+            </div>
+
+            <div class="customization-group">
+                <div class="form-group">
+                    <label for="inputColor">QR Color (Hex)</label>
+                    <input type="text" id="inputColor" autocomplete="off" placeholder="#000000" maxlength="7" />
                 </div>
                 <div class="form-group">
-                    <label for="inputColor">Color (Hex)</label>
-                    <input type="text" id="inputColor" autocomplete="off" placeholder="e.g., 2BB1FF" maxlength="6" />
+                    <label for="inputBgColor">Background (Hex)</label>
+                    <input type="text" id="inputBgColor" autocomplete="off" placeholder="#FFFFFF" maxlength="7" />
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputLogoUrl">Logo URL (Optional)</label>
+                <input type="text" id="inputLogoUrl" autocomplete="off" placeholder="https://example.com/logo.png" />
+            </div>
+
+            <div class="form-group">
+                <label for="inputLogoFile">Or Upload Logo (Optional)</label>
+                <input type="file" id="inputLogoFile" accept="image/png, image/jpeg" />
             </div>
 
             <button type="button" onclick="generate()" id="submit">Generate</button>
